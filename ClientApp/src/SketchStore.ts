@@ -22,7 +22,7 @@ export class SketchStore {
                 console.log(json);
 
                 for (let i = 0; i < json.length; i++) {
-                    this.sketches.push(json[i] as Sketch);
+                    this.sketches.push(json[i] as Sketch); 
                 }
 
                 this.isLoading = false
