@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MS.Paint2", "MS.Paint2.csproj", "{C9C0CE3A-0365-4373-8D50-E6664A34F961}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MS.Paint2.Repository", "..\MS.Paint2.Repository\MS.Paint2.Repository.csproj", "{5B05EC6D-9D89-438F-BD1C-D7B6C6B638B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MS.Paint2.Repository", "MS.Paint2.Repository\MS.Paint2.Repository.csproj", "{CD4F096E-D74F-4F23-A2BA-184B76CE6705}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{C9C0CE3A-0365-4373-8D50-E6664A34F961}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9C0CE3A-0365-4373-8D50-E6664A34F961}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9C0CE3A-0365-4373-8D50-E6664A34F961}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B05EC6D-9D89-438F-BD1C-D7B6C6B638B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B05EC6D-9D89-438F-BD1C-D7B6C6B638B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B05EC6D-9D89-438F-BD1C-D7B6C6B638B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B05EC6D-9D89-438F-BD1C-D7B6C6B638B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD4F096E-D74F-4F23-A2BA-184B76CE6705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD4F096E-D74F-4F23-A2BA-184B76CE6705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD4F096E-D74F-4F23-A2BA-184B76CE6705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD4F096E-D74F-4F23-A2BA-184B76CE6705}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
