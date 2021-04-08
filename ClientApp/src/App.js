@@ -3,7 +3,7 @@ import "antd/dist/antd.dark.css";
 import { Row, Col, Space } from 'antd';
 import { Sketch } from './components/Sketch';
 import Gallery from './components/Gallery';
-import { SketchStore } from './SketchStore';
+import { SketchStore } from './services/SketchStore';
 
 export default class App extends Component {
     static displayName = App.name;

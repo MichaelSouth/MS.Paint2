@@ -4,12 +4,12 @@ import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 
 export class Sketch extends Component {
-    static displayName = Sketch.name;
+    static displayName : string = Sketch.name;
 
-    lastXPos = -1;
-    lastYPos = -1;
+    lastXPos : number = -1;
+    lastYPos : number= -1;
 
-    constructor(props) {
+    constructor(props : any) {
         super(props);
         this.state = { open: false };
     }
@@ -17,15 +17,15 @@ export class Sketch extends Component {
     componentDidMount() {
         this.fitToContainer();
         this.clearScreen();
-        var colorPicker = document.getElementById("colorPicker");
+        var colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
         colorPicker.defaultValue = "#FFFF00";
 
-        var brushThickness = document.getElementById("brushThickness");
+        var brushThickness = document.getElementById("brushThickness") as HTMLInputElement;
         brushThickness.defaultValue = "10";
     }
 
     fitToContainer() {
-        const canvas = document.getElementById('CanvasIdentifier');
+        const canvas = document.getElementById('CanvasIdentifier') as HTMLCanvasElement;
         // Make it visually fill the positioned parent
         canvas.style.width = '100%';
         canvas.style.height = '100%';
@@ -48,11 +48,11 @@ export class Sketch extends Component {
             : e.buttons === 1;
 
         if (leftMouseButtonOnlyDown) {
-            const canvas = document.getElementById('CanvasIdentifier');
+            const canvas = document.getElementById('CanvasIdentifier') as HTMLCanvasElement;
             const ctx = canvas.getContext('2d');
             const rect = canvas.getBoundingClientRect();
 
-            var brushThickness = document.getElementById("brushThickness");
+            var brushThickness = document.getElementById("brushThickness") as HTMLInputElement;
 
             if (this.lastXPos !== -1) {
                 // Shadow
@@ -60,7 +60,7 @@ export class Sketch extends Component {
                 ctx.shadowBlur = 15;
 
                 //Draw line
-                var colorPicker = document.getElementById("colorPicker");
+                var colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
                 ctx.strokeStyle = colorPicker.value;
                 ctx.fillStyle = colorPicker.value;
                 ctx.lineWidth = brushThickness.value;
@@ -81,9 +81,9 @@ export class Sketch extends Component {
     }
 
     clearScreen() {
-        const canvas = document.getElementById('CanvasIdentifier');
+        const canvas = document.getElementById('CanvasIdentifier') as HTMLCanvasElement;
         const ctx = canvas.getContext('2d');
-        var brushThickness = document.getElementById("brushThickness");
+        var brushThickness = document.getElementById("brushThickness") as HTMLInputElement;
 
         console.log("Clear!"); 
 
@@ -105,12 +105,46 @@ export class Sketch extends Component {
         ctx.fillText(text, canvas.width / 2 - (len.width / 2), canvas.height / 2);
     }
 
+    goWild() {
+        console.log("Gol Wild");
+        const canvas = document.getElementById('CanvasIdentifier') as HTMLCanvasElement;
+        const ctx = canvas.getContext('2d');
+
+        for (let i: number = 0; i < 300; i++) {
+            //Draw random line
+            ctx.shadowColor = this.getRandomColor();
+            ctx.shadowBlur = 15;
+            ctx.fillStyle = this.getRandomColor();
+            ctx.strokeStyle = this.getRandomColor();
+            ctx.lineWidth = 30;
+
+            const x1: number = Math.floor(Math.random() * canvas.width);
+            const y1: number = Math.floor(Math.random() * canvas.height);
+            const x2: number = Math.floor(Math.random() * canvas.width);
+            const y2: number = Math.floor(Math.random() * canvas.height);
+            
+            ctx.beginPath(); // Reset the current path         
+            ctx.moveTo(x1, y1);  // Staring point         
+            ctx.lineTo(x2, y2); // End point       
+            ctx.stroke();    // Redner the line visible
+        }
+    }
+
+    getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
     async save() {
         //sketchDiv.classList.add('blurAnimation');
 
         console.log("Saving image");
 
-        const canvas = document.getElementById('CanvasIdentifier');
+        const canvas = document.getElementById('CanvasIdentifier') as HTMLCanvasElement;
 
         var sketchModel = {
             Name: this.GenerateIdentifier(),
@@ -162,6 +196,11 @@ export class Sketch extends Component {
                         type="button"
                         onClick={(e) => { this.save() }}
                         className="btn btn-primary mr-1">Save</button>
+
+                    <button
+                        type="button"
+                        onClick={(e) => { this.goWild() }}
+                        className="btn btn-primary mr-1">Go Wild</button>
 
                     <input id="colorPicker"
                         type="color" />
