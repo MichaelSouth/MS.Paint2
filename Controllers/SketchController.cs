@@ -35,7 +35,7 @@ namespace MS.Paint2.Controllers
         }
 
         [HttpPost]
-        public void Post(Sketch sketch)
+        public IActionResult Post(Sketch sketch)
         {
             _logger.LogInformation($"Save image: {sketch.Name}");
 
@@ -49,12 +49,19 @@ namespace MS.Paint2.Controllers
             };
 
             _sketchRepository.Create(sketchModel);
-            //using (var memoryStream = new System.IO.MemoryStream(imageData))
-            //{
-            //    var image = System.Drawing.Image.FromStream(memoryStream);
-            //    image.Save("temp.png", ImageFormat.Png);
-            //    image.Dispose();
-            //}
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("DeleteAll")]
+        public IActionResult DeleteAll()
+        {
+            _logger.LogInformation($"Delete all sketches");
+
+            var deleteCount = _sketchRepository.DeleteAll();
+
+            _logger.LogInformation($"Deleted {deleteCount} sketches");
+            return Ok();
         }
     }
 }

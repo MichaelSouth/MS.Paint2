@@ -105,8 +105,22 @@ export class Sketch extends Component {
         ctx.fillText(text, canvas.width / 2 - (len.width / 2), canvas.height / 2);
     }
 
+    async deleteAllSketches() {
+        console.log("Delete all sketches");
+
+        const response = await fetch('sketch/DeleteAll', {
+            method: 'post',
+            headers: {
+                "Content-type": "application/json"
+            },
+        }).then(response => {
+            this.props.sketchStore.refreshSketches();
+        });   
+
+    }
+
     goWild() {
-        console.log("Gol Wild");
+        console.log("Go Wild");
         const canvas = document.getElementById('CanvasIdentifier') as HTMLCanvasElement;
         const ctx = canvas.getContext('2d');
 
@@ -158,7 +172,7 @@ export class Sketch extends Component {
             },
             body: JSON.stringify(sketchModel)
         }).then(response => {
-            this.props.sketchStore.loadSketches();
+            this.props.sketchStore.refreshSketches();
         });   
     }
 
@@ -201,6 +215,11 @@ export class Sketch extends Component {
                         type="button"
                         onClick={(e) => { this.goWild() }}
                         className="btn btn-primary mr-1">Go Wild</button>
+
+                    <button
+                        type="button"
+                        onClick={(e) => { this.deleteAllSketches()}}
+                        className="btn btn-primary mr-1">Delete All Sketches</button>
 
                     <input id="colorPicker"
                         type="color" />

@@ -1,4 +1,4 @@
-﻿using MongoDB.Bson;
+﻿ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -36,6 +36,11 @@ namespace MS.Paint2.Repository
         public IList<SketchModel> ReadAll()
         {
             return _sketches.Find(new BsonDocument()).ToList();
+        }
+
+        public long DeleteAll()
+        {
+            return  _sketches.DeleteMany(new BsonDocument()).DeletedCount;
         }
     }
 }
