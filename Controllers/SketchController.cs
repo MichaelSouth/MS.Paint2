@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using MS.Paint2.Repository;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.Linq;
 
 namespace MS.Paint2.Controllers

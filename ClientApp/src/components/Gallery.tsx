@@ -1,15 +1,21 @@
-﻿import React, { Component } from 'react';
+﻿import * as React from 'react'
+import { Component } from 'react';
 import { observer } from 'mobx-react' // 6.x or mobx-react-lite@1.4.0
 import { Sketch } from "../services/Sketch"
+import { SketchStore } from "../services/SketchStore"
 
-class Gallery extends Component {
+interface GalleryState {
+    SketchStore: SketchStore;
+}
+
+class Gallery extends Component<GalleryState, any> {
     static displayName = Gallery.name;
 
     render() {
         var divStyle = {
             borderRadius: "5%"
         };
-        const sortedSketches = this.props.sketchStore.sketches.slice().sort((a: Sketch, b: Sketch) => new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime());
+        const sortedSketches = this.props.SketchStore.sketches.slice().sort((a: Sketch, b: Sketch) => new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime());
         return (
             <table >
                 <tbody>

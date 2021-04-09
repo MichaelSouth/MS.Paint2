@@ -1,19 +1,15 @@
-﻿import React, { Component } from 'react';
+﻿import * as React from 'react'
+import { Component } from 'react';
 import { Layout } from 'antd';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Footer, Content } = Layout;
 
-export class Sketch extends Component {
+export class Sketch extends Component<any,any> {
     static displayName : string = Sketch.name;
 
     lastXPos : number = -1;
     lastYPos : number= -1;
 
-    constructor(props : any) {
-        super(props);
-        this.state = { open: false };
-    }
-   
     componentDidMount() {
         this.fitToContainer();
         this.clearScreen();
@@ -37,19 +33,19 @@ export class Sketch extends Component {
     // https://www.npmjs.com/package/trianglify
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
 
-    onMouseUp(e) {
+    onMouseUp(e: any) {
         this.lastXPos = -1;
         this.lastYPos = -1;
     }
 
-    onMouseMove(e) {
+    onMouseMove(e : any) {
         let leftMouseButtonOnlyDown = e.buttons === undefined
             ? e.which === 1
             : e.buttons === 1;
 
         if (leftMouseButtonOnlyDown) {
             const canvas = document.getElementById('CanvasIdentifier') as HTMLCanvasElement;
-            const ctx = canvas.getContext('2d');
+            const ctx = canvas.getContext('2d') as CanvasRenderingContext2D ;
             const rect = canvas.getBoundingClientRect();
 
             var brushThickness = document.getElementById("brushThickness") as HTMLInputElement;
@@ -63,7 +59,7 @@ export class Sketch extends Component {
                 var colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
                 ctx.strokeStyle = colorPicker.value;
                 ctx.fillStyle = colorPicker.value;
-                ctx.lineWidth = brushThickness.value;
+                ctx.lineWidth = parseInt(brushThickness.value);
 
                 // Reset the current path
                 ctx.beginPath();
@@ -82,7 +78,7 @@ export class Sketch extends Component {
 
     clearScreen() {
         const canvas = document.getElementById('CanvasIdentifier') as HTMLCanvasElement;
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d') as CanvasRenderingContext2D ;
         var brushThickness = document.getElementById("brushThickness") as HTMLInputElement;
 
         console.log("Clear!"); 
@@ -122,7 +118,7 @@ export class Sketch extends Component {
     goWild() {
         console.log("Go Wild");
         const canvas = document.getElementById('CanvasIdentifier') as HTMLCanvasElement;
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d') as CanvasRenderingContext2D ;
 
         for (let i: number = 0; i < 300; i++) {
             //Draw random line

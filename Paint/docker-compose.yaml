@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  MSPaint:
+    image: michaelsouth/mspaint2:latest
+    container_name: MSPaint
+    environment:
+    #- ASPNETCORE_ENVIRONMENT=Development
+    - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "11000:80"
+      - "11001:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    deploy:
+      #This only takes effect when deploying to a swarm with docker stack deploy, and is ignored by docker-compose up and docker-compose run.
+      replicas: 1
+  Mongo:
+    image: mongo:latest
+    ports:
+      - "12000:27017"

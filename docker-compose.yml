@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  ms.paint2:
+    image: ${DOCKER_REGISTRY-}mspaint2
+    build:
+      context: .
+      dockerfile: Dockerfile
+  Mongo:
+    image: mongo:latest
+    ports:
+      - "12000:27017"

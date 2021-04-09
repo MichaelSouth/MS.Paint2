@@ -22,7 +22,7 @@ export default class App extends Component {
                 </Row>
                 <Row>
                     <Col span={16}><Sketch sketchStore={this.sketchStore} /></Col>
-                    <Col span={6}><Gallery sketchStore={this.sketchStore} /></Col>
+                    <Col span={6}><Gallery SketchStore={ this.sketchStore } /></Col>
                 </Row>
             </div>
         );
