@@ -43,6 +43,22 @@
     <TypeScriptCompile Include="ClientApp\src\services\Sketch.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Sketches\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Sketches\gvez4bwkk1gj0v49wut46d">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sketches\l9lrm2cwt2kw4st9rl4a">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sketches\w3as451dsldd48i0sfvp8">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

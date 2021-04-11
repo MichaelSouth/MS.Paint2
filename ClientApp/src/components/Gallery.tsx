@@ -23,7 +23,7 @@ class Gallery extends Component<GalleryState, any> {
                         <tr key={sketch.name}>
                             <td> <img style={divStyle} className="bg-image" src={`data:image/png;base64,${sketch.imageData}`} width="320" height="256" alt={sketch.name} /></td>
                         </tr>
-                    )};
+                    )}
                 </tbody>
             </table>
         );

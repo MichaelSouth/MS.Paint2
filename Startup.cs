@@ -31,6 +31,7 @@ namespace MS.Paint2
                 sp.GetRequiredService<IOptions<SketchDatabaseSettings>>().Value);
 
             services.AddSingleton<SketchRepository>();
+            services.AddSingleton<DefaultSketchManagerBuilder>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -42,6 +43,9 @@ namespace MS.Paint2
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var defaultSketchManagerBuilder = app.ApplicationServices.GetRequiredService(typeof(DefaultSketchManagerBuilder)) as DefaultSketchManagerBuilder;
+            defaultSketchManagerBuilder.Build();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -70,10 +74,10 @@ namespace MS.Paint2
             {
                 spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
+                //if (env.IsDevelopment())
+                //{
+                //    spa.UseReactDevelopmentServer(npmScript: "start");
+                //}
             });
         }
     }

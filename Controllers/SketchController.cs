@@ -48,6 +48,9 @@ namespace MS.Paint2.Controllers
             };
 
             _sketchRepository.Create(sketchModel);
+
+            //System.IO.File.WriteAllBytes(sketchModel.Name, sketchModel.ImageData);
+     
             return Ok();
         }
 
