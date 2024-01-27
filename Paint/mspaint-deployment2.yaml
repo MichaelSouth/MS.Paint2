@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\micha\source\repos\MS.Paint2\Paint\kompose.exe convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mspaint
+  name: mspaint
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mspaint
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\micha\source\repos\MS.Paint2\Paint\kompose.exe convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mspaint
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_URLS
+          value: http://+:80
+        - name: MONGOCONNECTIONSTRING
+          value: mongodb://10.100.252.102:12000
+        image: michaelsouth/mspaint2:latest
+        imagePullPolicy: ""
+        name: mspaint
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+status: {}

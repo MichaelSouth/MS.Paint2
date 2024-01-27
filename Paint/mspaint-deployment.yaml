@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\micha\source\repos\MS.Paint2\Paint\kompose.exe convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mspaint
+  name: mspaint
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mspaint
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\micha\source\repos\MS.Paint2\Paint\kompose.exe convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mspaint
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_URLS
+          value: http://+:80
+        image: michaelsouth/mspaint2:latest
+        imagePullPolicy: ""
+        name: mspaint
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        resources: {}
+        volumeMounts:
+        - mountPath: /root/.microsoft/usersecrets
+          name: C
+          readOnly: true
+        - mountPath: /root/.aspnet/https
+          name: C
+          readOnly: true
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: C
+        persistentVolumeClaim:
+          claimName: C
+          readOnly: true
+      - name: C
+        persistentVolumeClaim:
+          claimName: C
+          readOnly: true
+status: {}

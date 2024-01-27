@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\micha\source\repos\MS.Paint2\Paint\kompose.exe convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mspaint
+  name: mspaint
+spec:
+  ports:
+  - name: "11000"
+    port: 11000
+    targetPort: 80
+  - name: "11001"
+    port: 11001
+    targetPort: 443
+  selector:
+    io.kompose.service: mspaint
+status:
+  loadBalancer: {}
